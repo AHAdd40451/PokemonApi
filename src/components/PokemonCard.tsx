@@ -55,7 +55,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
   return (
     <Link
       to={`/${name}`}
-      className="group block w-full bg-gray-50 border border-gray-100 rounded-lg p-4 transition transform space-y-8 hover:shadow hover:scale-105"
+      className="group block w-full bg-gray-50 border border-gray-100 rounded-lg p-4 transition transform space-y-8 hover:shadow hover:scale-105 w-fit	"
     >
       <div className="w-full h-56 flex justify-center">
         <img
@@ -64,47 +64,54 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
           alt={pokemon.data?.data.name}
         />
       </div>
-      <div className="font-medium capitalize text-xl text-gray-500 transition group-hover:text-gray-700">
+      <div className="font-medium text-center capitalize text-xl text-gray-500 transition group-hover:text-gray-700 text-align-center">
         {pokemon.data?.data.name}
       </div>
+
+      {/* Types */}
       {showStats && (
-        <div className="space-y-2">
-          <header className="font-medium text-gray-500">Types</header>
+        <div className="flex flex-col gap-2">
+          <header className="font-medium text-gray w-full text-center">
+            Types
+          </header>
           {pokemon.data?.data?.types.map((type) => {
             return (
-              <div
-                className="grid grid-cols-2 items-center space-y-1"
-                key={type.type.name}
-              >
-                <div className="text-gray-500">{type.type.name}</div>
+              <div key={type.type.name}>
+                <div className="text-gray font-bold	antialiased whitespace-nowrap capitalize text-xs bg-yellow-400 p-1 rounded text-center">
+                  {type.type.name}
+                </div>
               </div>
             );
           })}
         </div>
       )}
 
+      {/* Description */}
       {showStats && (
         <div className="space-y-2">
-          <header className="font-medium text-gray-500">Description</header>
+          <header className="font-medium text-gray  ">Description</header>
           {apidata?.flavor_text_entries
             ?.slice(10, 11)
             .map((flavor_text: any) => {
               return (
                 <div className="items-center" key={flavor_text.flavor_text}>
-                  <div className="text-gray-500">{flavor_text.flavor_text}</div>
+                  <div className="text-gray-500 capitalize ">
+                    {flavor_text.flavor_text}
+                  </div>
                 </div>
               );
             })}
         </div>
       )}
 
+      {/* Stats */}
       {showStats && (
         <div className="space-y-2">
-          <header className="font-medium text-gray-500">Stats</header>
+          <header className="font-medium text-gray capitalize">Stats</header>
           {pokemon.data?.data.stats.map((stat) => {
             return (
               <div
-                className="grid grid-cols-2 items-center space-y-1"
+                className="grid grid-cols-2 items-center space-y-1 capitalize"
                 key={stat.stat.name}
               >
                 <div className="text-gray-500">{stat.stat.name}</div>
@@ -125,33 +132,39 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
         </div>
       )}
 
+      {/* Moves */}
       {showStats && (
-        <div className="space-y-2">
-          <header className="font-medium text-gray-500">Moves</header>
+        <div className="flex flex-row flex-wrap gap-5 text-justify w-fit ">
+          <header className="font-medium text-gray w-full text-center">
+            Moves
+          </header>
+
           {pokemon.data?.data?.moves.slice(0, 6).map((move) => {
             return (
-              <div
-                className="grid grid-cols-2 items-center space-y-1"
-                key={move.move.name}
-              >
-                <div className="text-gray-500">{move.move.name}</div>
+              <div>
+                <div
+                  className="text-gray font-bold	 whitespace-nowrap capitalize text-xs bg-yellow-400 p-1 rounded text-center"
+                  key={move.move.name}
+                >
+                  {move.move.name}
+                </div>
               </div>
             );
           })}
         </div>
       )}
 
+      {/* Weakness */}
       {showStats && (
-        <div className="space-y-2">
-          <header className="font-medium text-gray-500">Weakness</header>
+        <div className="space-y-2  flex-col gap-10 text text-center capitalize">
+          <header className="font-medium text-gray">Weakness</header>
           {type.damage_relations?.double_damage_from.map(
             (double_damage_from: any) => {
               return (
-                <div
-                  className="items-center space-y-1"
-                  key={double_damage_from.name}
-                >
-                  <div className="text-gray-500">{double_damage_from.name}</div>
+                <div className="space-y-1" key={double_damage_from.name}>
+                  <div className="text-gray mt-5 bg-yellow-400 p-1 rounded font-bold	">
+                    {double_damage_from.name}
+                  </div>
                 </div>
               );
             }
