@@ -50,6 +50,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
       </div>
     );
   }
+  const otherSprites = pokemon.data?.data.sprites.other;
+
   return (
     <Link
       to={`/${name}`}
@@ -58,8 +60,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
       <div className="w-full h-56 flex justify-center">
         <img
           className="w-full h-full object-contain"
-          src={pokemon.data?.data.sprites.other.dream_world.front_default}
-          alt=""
+          src={otherSprites?.["official-artwork"].front_default}
+          alt={pokemon.data?.data.name}
         />
       </div>
       <div className="font-medium capitalize text-xl text-gray-500 transition group-hover:text-gray-700">
@@ -146,7 +148,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
             (double_damage_from: any) => {
               return (
                 <div
-                  className="grid grid-cols-2 items-center space-y-1"
+                  className="items-center space-y-1"
                   key={double_damage_from.name}
                 >
                   <div className="text-gray-500">{double_damage_from.name}</div>
