@@ -1,9 +1,8 @@
-import { useQuery } from "react-query";
-
 import { useNavigate, useParams } from "react-router";
 import Layout from "../components/Layout";
 import PokemonCard from "../components/PokemonCard";
-import { pokemonApi } from "../api";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { useFindPokemon } from "../hooks/useFindPokemon";
 
@@ -16,7 +15,7 @@ const Pokemon: React.FC<{}> = () => {
   const goBack = () => navigate(-1);
 
   if (pokemon.isLoading) {
-    return <div>loading</div>;
+    return <Skeleton count={100} />;
   }
   return (
     <Layout>
@@ -27,7 +26,7 @@ const Pokemon: React.FC<{}> = () => {
 
             <div
               role="button"
-              className="block text-lg  text-gray-400"
+              className="block text-lg  text-gray  bg-gray-300 rounded w-fit p-1 flex align-center justify-center"
               onClick={goBack}
             >
               Back

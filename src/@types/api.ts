@@ -1,14 +1,3 @@
-import {
-  PokemonAbility,
-  NamedAPIResource,
-  PokemonHeldItem,
-  VersionGameIndex,
-  PokemonMove,
-  PokemonSprites,
-  PokemonType,
-  PokemonStat,
-} from "pokenode-ts";
-
 export type Stat = {
   base_stat: number;
   stat: {

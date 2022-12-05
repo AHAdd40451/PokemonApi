@@ -2,9 +2,10 @@ import { PokemonClient } from "pokenode-ts";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFindPokemon } from "../hooks/useFindPokemon";
-import Loader from "./Loader";
-import client from "../api/client";
+
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type PokemonCardProps = {
   name: string;
@@ -16,8 +17,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
   const [apidata, setApidata] = useState<any>([]);
   const [type, setType] = useState<any>([]);
   const Id: any = pokemon.data?.data.types[0].type.url.slice(31, 33);
+
   useEffect(() => {
-    const api = new PokemonClient(); // create an PokemonClient
+    const api = new PokemonClient();
     api
       .getPokemonSpeciesByName(name)
       .then((data) => setApidata(data))
@@ -27,8 +29,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
   useEffect(() => {
     if (Id) {
       async function getUsers() {
-        // 👇️ const data: GetUsersResponse
-        const { data, status } = await axios.get<any>(
+        const { data } = await axios.get<any>(
           `https://pokeapi.co/api/v2/type/${Id}`,
           {
             headers: {
@@ -37,25 +38,20 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name, showStats }) => {
           }
         );
         setType(data);
-        // 👇️ "response status is: 200
         return data;
       }
       getUsers();
     }
   }, [Id]);
   if (pokemon.isLoading) {
-    return (
-      <div className="w-full h-96 bg-gray-50 border border-gray-100 rounded-lg p-4 flex justify-center item-center">
-        <Loader />
-      </div>
-    );
+    return <Skeleton count={5} />;
   }
   const otherSprites = pokemon.data?.data.sprites.other;
 
   return (
     <Link
       to={`/${name}`}
-      className="group block w-full bg-gray-50 border border-gray-100 rounded-lg p-4 transition transform space-y-8 hover:shadow hover:scale-105 w-fit	"
+      className="group block w-full bg-gray-50 border border-gray-100 rounded-lg p-4 transition transform space-y-8 hover:shadow hover:scale-105"
     >
       <div className="w-full h-56 flex justify-center">
         <img
