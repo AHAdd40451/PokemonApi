@@ -14,7 +14,7 @@ const Header: React.FC<{}> = () => {
           <input
             type="text"
             placeholder="Search pokemon by name..."
-            className="w-full border-2 border-gray-200 rounded py-2 px-4 md:w-72"
+            className="w-full border-2 border-gray-200 rounded lowercase py-2 px-4 md:w-72"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
