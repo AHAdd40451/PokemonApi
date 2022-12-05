@@ -26,7 +26,7 @@ const Pokemon: React.FC<{}> = () => {
 
             <div
               role="button"
-              className="block text-lg  text-gray  bg-gray-300 rounded w-fit p-1 flex align-center justify-center"
+              className="block text-lg  text-gray  bg-gray-300 rounded w-1/1 p-2 flex align-center justify-center"
               onClick={goBack}
             >
               Back

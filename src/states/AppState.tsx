@@ -7,7 +7,7 @@ type AppsContextProps = {
   pokemons: UseQueryResult<PokemonsResponse>;
   searchQuery: string;
   filteredPokemons: PokemonResponseResult[] | undefined;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setSearchQuery: React.Dispatch<React.SetStateAction<any>>;
 };
 
 type AppStateProviderProps = {
@@ -19,10 +19,11 @@ export const useApp = () => useContext(AppContext);
 export const AppStateProvider: React.FC<AppStateProviderProps> = ({
   children,
 }) => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
   const pokemons = useQuery("all-pokemons", () => {
     return pokemonApi.getAllPokemons();
   });
-  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const filteredPokemons = useMemo(() => {
     if (searchQuery === "") {

@@ -20,11 +20,11 @@ const Header: React.FC<{}> = () => {
           />
         </div>
         <h1 className="w-fit rounded py-2 text-right px-4 md:w-72 text-right">
+          Developed By
           <a
             href="https://abdul-ahad-portfolio.netlify.app/"
             className="text-black-500	"
           >
-            Developed By
             <span className="text-red-500 underline p-2">Abdul Ahad</span>
           </a>
         </h1>
