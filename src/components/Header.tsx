@@ -14,9 +14,9 @@ const Header: React.FC<{}> = () => {
           <input
             type="text"
             placeholder="Search pokemon by name..."
-            className="w-full border-2 border-gray-200 rounded lowercase py-2 px-4 md:w-72"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full border-2 border-gray-200 rounded  py-2 px-4 md:w-72"
+            value={searchQuery.toLowerCase()}
+            onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
           />
         </div>
         <h1 className="w-fit rounded py-2 text-right px-4 md:w-72 text-right">
