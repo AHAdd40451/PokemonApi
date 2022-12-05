@@ -19,18 +19,20 @@ const Pokemon: React.FC<{}> = () => {
   }
   return (
     <Layout>
-      <div className="container mx-auto px-6 md:px-0">
+      <div className="container  mx-auto px-6 md:px-0">
         {pokemon.data && (
           <div className="max-w-md mx-auto space-y-6">
             <PokemonCard name={pokemon.data.data.name} showStats />
-
+            <br />
             <div
               role="button"
-              className="block text-lg  text-gray  bg-gray-300 rounded w-1/1 p-2 flex align-center justify-center"
+              className="block text-lg text-gray  bg-gray-300 rounded w-1/1 p-2 flex align-center justify-center "
               onClick={goBack}
             >
               Back
             </div>
+            <br />
+            <br />
           </div>
         )}
       </div>
