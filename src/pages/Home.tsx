@@ -23,7 +23,7 @@ const Home: React.FC<{}> = () => {
     <Layout>
       <main className="container mx-auto px-6 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filteredPokemons?.slice(3).map((pokemon: PokemonResponseResult) => (
+          {filteredPokemons?.map((pokemon: PokemonResponseResult) => (
             <InView
               key={pokemon.name}
               rootMargin="200px 0px"
